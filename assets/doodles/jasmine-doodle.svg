@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 520">
+<g stroke="#24231e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<!-- hair -->
+<path fill="none" d="M104 83 C92 45 119 18 157 23 C192 26 207 55 199 91 C193 113 176 132 159 139 C134 145 111 126 104 83Z"/>
+<path fill="none" d="M186 65 C215 89 207 154 181 181"/>
+<path fill="none" d="M193 75 C217 104 210 151 185 173"/>
+<!-- face -->
+<path fill="#f4dfc8" d="M115 74 C117 49 149 40 171 57 C188 70 183 105 166 119 C145 137 116 116 115 74Z"/>
+<path d="M134 83 l2 0 M161 83 l2 0" fill="none"/>
+<path d="M145 98 q7 5 14 0" fill="none"/>
+<!-- body -->
+<path fill="#f2f0e8" d="M119 130 L92 148 L111 186 L128 176 L131 234 L174 234 L178 176 L194 187 L210 148 L181 130 L165 144 L137 144 Z"/>
+<!-- shirt -->
+<path id="shirt" fill="#8ed0ff" d="M119 130 L92 148 L111 186 L128 176 L131 234 L174 234 L178 176 L194 187 L210 148 L181 130 L165 144 L137 144 Z"/>
+<!-- arms -->
+<path fill="#f4dfc8" d="M92 149 C83 167 92 185 109 194 L119 181 L107 169 L111 151Z"/>
+<path fill="#f4dfc8" d="M194 150 C203 169 194 185 178 194 L168 181 L180 169 L176 151Z"/>
+<!-- pants -->
+<path fill="#b8b8b2" d="M131 234 L149 234 L147 328 L124 327 Z"/>
+<path fill="#b8b8b2" d="M150 234 L174 234 L178 327 L153 328 Z"/>
+<path d="M131 238 L174 238" fill="none"/>
+<!-- shoes/crocs -->
+<path id="croc1" fill="#8ed0ff" d="M124 327 C116 336 111 353 119 364 C131 372 151 370 158 359 L154 348 L146 336 L141 328Z"/>
+<path id="croc2" fill="#8ed0ff" d="M153 328 C158 337 161 350 158 359 C166 370 188 371 198 362 C204 354 199 339 188 328 L174 326Z"/>
+<!-- little bag -->
+<path fill="#25251f" d="M181 174 C205 175 218 199 213 236 L202 288 L177 283 L184 238Z"/>
+<path fill="none" d="M181 178 C172 146 188 132 201 153"/>
+<!-- doodle movement marks -->
+<path fill="none" d="M72 112 l-12 -9 M78 94 l-10 -4 M222 105 l11 -7"/>
+</g>
+</svg>
