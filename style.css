@@ -4786,3 +4786,252 @@ button.home-side-card{
 .contact-footer {
   border-color: #111;
 }
+
+/* =========================================================
+   FINAL MOVIE POPUP + ACCORDION FIX
+   ========================================================= */
+
+.movie-dropdown {
+  position: absolute !important;
+  z-index: 999 !important;
+  top: 58px !important;
+  right: 22px !important;
+  width: min(520px, 48vw) !important;
+  max-height: calc(100vh - 88px) !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+  background: var(--paper) !important;
+  color: var(--black) !important;
+  border: 2px solid var(--black) !important;
+  box-shadow: 8px 8px 0 var(--black) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(-8px) !important;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease !important;
+}
+
+.movie-dropdown.open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
+
+.movie-dropdown-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  padding: 14px 16px !important;
+  border-bottom: 2px solid var(--black) !important;
+  background: var(--paper) !important;
+}
+
+.movie-dropdown-head > div {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+
+.movie-kicker {
+  font: 8px/1 var(--mono) !important;
+  letter-spacing: .08em !important;
+  opacity: .55 !important;
+}
+
+.movie-dropdown-head strong {
+  font: 900 20px/1 Arial, Helvetica, sans-serif !important;
+  letter-spacing: -.04em !important;
+}
+
+.movie-dropdown-head button {
+  width: 32px !important;
+  height: 32px !important;
+  flex: 0 0 32px !important;
+  display: grid !important;
+  place-items: center !important;
+  border: 1px solid var(--black) !important;
+  background: transparent !important;
+  color: var(--black) !important;
+  font: 24px/1 Arial, Helvetica, sans-serif !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.movie-dropdown-head button:hover {
+  background: var(--black) !important;
+  color: var(--paper) !important;
+}
+
+.movie-accordion {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.movie-folder {
+  border-bottom: 1px solid rgba(23,23,19,.35) !important;
+}
+
+.movie-folder:last-child {
+  border-bottom: 0 !important;
+}
+
+.movie-folder-tab {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 34px minmax(0,1fr) 48px 24px !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 15px 16px !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--black) !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  transition: background .15s ease, padding-left .15s ease !important;
+}
+
+.movie-folder-tab:hover {
+  background: rgba(23,23,19,.07) !important;
+  padding-left: 20px !important;
+}
+
+.movie-number {
+  font: 9px var(--mono) !important;
+  opacity: .5 !important;
+}
+
+.movie-folder-name {
+  min-width: 0 !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.025em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.movie-year {
+  font: 9px var(--mono) !important;
+  opacity: .55 !important;
+  text-align: right !important;
+}
+
+.movie-arrow {
+  font-size: 17px !important;
+  text-align: right !important;
+  transition: transform .18s ease !important;
+}
+
+.movie-folder-body {
+  display: grid !important;
+  grid-template-columns: 135px minmax(0,1fr) !important;
+  gap: 18px !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  padding: 0 16px !important;
+  transition: max-height .28s ease, opacity .2s ease, padding .28s ease !important;
+}
+
+.movie-folder.open .movie-folder-body {
+  max-height: 260px !important;
+  opacity: 1 !important;
+  padding: 4px 16px 18px !important;
+}
+
+.movie-folder.open .movie-arrow {
+  transform: rotate(90deg) !important;
+}
+
+.movie-folder-body img {
+  display: block !important;
+  width: 135px !important;
+  aspect-ratio: 2 / 3 !important;
+  object-fit: cover !important;
+  border: 1px solid var(--black) !important;
+  box-shadow: 4px 4px 0 var(--black) !important;
+}
+
+.movie-folder-info {
+  align-self: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 7px !important;
+}
+
+.movie-folder-info span {
+  font: 8px var(--mono) !important;
+  opacity: .55 !important;
+  letter-spacing: .06em !important;
+}
+
+.movie-folder-info strong {
+  font: 900 clamp(20px,3vw,32px)/.92 Arial, Helvetica, sans-serif !important;
+  letter-spacing: -.055em !important;
+}
+
+.movie-folder-info small {
+  font: 10px var(--mono) !important;
+  opacity: .6 !important;
+}
+
+/* MUSIC CROSS — force it above all player layers */
+.music-player {
+  z-index: 1000 !important;
+}
+
+.player-head button,
+#closePlayer {
+  position: relative !important;
+  z-index: 1001 !important;
+  display: grid !important;
+  place-items: center !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+@media (max-width: 760px) {
+  .movie-dropdown {
+    top: 55px !important;
+    right: 10px !important;
+    width: calc(100vw - 20px) !important;
+    max-width: none !important;
+  }
+
+  .movie-folder-body {
+    grid-template-columns: 105px minmax(0,1fr) !important;
+  }
+
+  .movie-folder-body img {
+    width: 105px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-folder-tab {
+    grid-template-columns: 25px minmax(0,1fr) 38px 20px !important;
+    gap: 7px !important;
+    padding: 13px 12px !important;
+  }
+
+  .movie-folder-body {
+    grid-template-columns: 90px minmax(0,1fr) !important;
+    gap: 13px !important;
+  }
+
+  .movie-folder.open .movie-folder-body {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .movie-folder-body img {
+    width: 90px !important;
+  }
+}

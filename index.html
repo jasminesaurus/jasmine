@@ -1,2921 +1,5807 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Jasmine — personal archive</title>
+
 <link rel="stylesheet" href="style.css">
 
+
+
 <style>
+
 /* =========================================================
+
    PHOTO ARCHIVE
+
    ========================================================= */
 
+
+
 .photo-archive{
+
   margin-top:42px;
+
   padding:28px;
+
   background:#171814;
+
   border:1px solid #34342f;
+
   color:#eee9dc;
+
 }
+
+
 
 .archive-intro{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:flex-end;
+
   gap:20px;
+
   border-bottom:1px solid #555;
+
   padding-bottom:18px;
+
 }
+
+
 
 .archive-intro h2{
+
   margin:0;
+
   font-size:clamp(28px,4vw,52px);
+
   letter-spacing:-.055em;
+
   color:#fff;
+
 }
+
+
 
 .archive-intro p{
+
   margin:7px 0 0;
+
   font:12px var(--mono);
+
   color:#bbb7ad;
+
 }
 
+
+
 .archive-count{
+
   font:11px var(--mono);
+
   color:#bbb7ad;
+
   white-space:nowrap;
+
 }
+
+
+
 
 
 /* FOLDERS */
 
+
+
 .photo-folders{
+
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:24px;
+
   margin-top:28px;
+
 }
+
+
 
 .photo-folder{
+
   appearance:none;
+
   border:0;
+
   padding:0;
+
   background:transparent;
+
   text-align:left;
+
   color:#171713;
+
   cursor:pointer;
+
   transition:transform .18s ease;
+
 }
+
+
 
 .photo-folder:hover{
+
   transform:translateY(-5px);
+
 }
+
+
 
 .folder-tab{
+
   display:inline-block;
+
   background:#ece9dd;
+
   border:1px solid #222;
+
   border-bottom:0;
+
   padding:7px 16px;
+
   font:10px var(--mono);
+
   letter-spacing:.08em;
+
 }
+
+
 
 .folder-body{
+
   position:relative;
+
   min-height:210px;
+
   padding:30px;
+
   background:#ece9dd;
+
   border:1px solid #222;
+
   box-shadow:7px 7px 0 rgba(0,0,0,.25);
+
   display:flex;
+
   flex-direction:column;
+
   justify-content:flex-end;
+
 }
+
+
 
 .folder-icon{
+
   position:absolute;
+
   top:25px;
+
   right:28px;
+
   font-size:48px;
+
   line-height:1;
+
   color:#222;
+
 }
+
+
 
 .folder-name{
+
   font-size:clamp(22px,3vw,38px);
+
   font-weight:700;
+
   letter-spacing:-.055em;
+
 }
+
+
 
 .folder-meta{
+
   margin-top:7px;
+
   font:11px var(--mono);
+
   color:#66635c;
+
 }
 
+
+
 .folder-arrow{
+
   position:absolute;
+
   right:27px;
+
   bottom:24px;
+
   font-size:25px;
+
 }
+
+
+
 
 
 /* ALBUM */
 
+
+
 .album-view{
+
   display:none;
+
   margin-top:34px;
+
   padding:26px;
+
   background:#ece9dd;
+
   color:#171713;
+
   border:1px solid #222;
+
   box-shadow:7px 7px 0 rgba(0,0,0,.22);
+
 }
+
+
 
 .album-view.open{
+
   display:block;
+
 }
+
+
 
 .album-top{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
+
   border-bottom:1px solid #777;
+
   padding-bottom:12px;
+
 }
+
+
 
 .album-back{
+
   border:0;
+
   background:transparent;
+
   padding:0;
+
   color:#171713;
+
   font:10px var(--mono);
+
   cursor:pointer;
+
 }
+
+
 
 .album-number{
+
   font:10px var(--mono);
+
   color:#66635c;
+
 }
+
+
 
 .album-heading{
+
   padding:24px 0 22px;
+
 }
+
+
 
 .album-kicker{
+
   font:10px var(--mono);
+
   letter-spacing:.08em;
+
   color:#66635c;
+
 }
+
+
 
 .album-heading h2{
+
   margin:6px 0 0;
+
   font-size:clamp(28px,4vw,52px);
+
   letter-spacing:-.055em;
+
 }
 
+
+
 .album-heading p{
+
   max-width:720px;
+
   margin:10px 0 0;
+
   font:14px/1.5 var(--mono);
+
   color:#4f4c46;
+
 }
+
+
+
 
 
 /* PHOTOS INSIDE ALBUM */
 
+
+
 .album-photos{
+
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   gap:14px;
+
 }
+
+
 
 .album-photo{
+
   margin:0;
+
   background:#171814;
+
   padding:7px;
+
   border:1px solid #222;
+
 }
+
+
 
 .album-photo img{
+
   width:100%;
+
   aspect-ratio:4/3;
+
   object-fit:cover;
+
   display:block;
+
 }
 
+
+
 .album-photo figcaption{
+
   padding:8px 4px 3px;
+
   color:#d9d4c8;
+
   font:9px var(--mono);
+
 }
+
+
+
 
 
 /* MOBILE */
 
+
+
 @media(max-width:760px){
 
+
+
   .photo-folders{
+
     grid-template-columns:1fr;
+
   }
+
+
 
   .photo-archive{
+
     padding:18px;
+
   }
+
+
 
   .album-photos{
+
     grid-template-columns:1fr 1fr;
+
   }
+
+
 
   .archive-intro{
+
     align-items:flex-start;
+
     flex-direction:column;
+
   }
 
+
+
 }
+
+
 
 @media(max-width:480px){
 
+
+
   .album-photos{
+
     grid-template-columns:1fr;
+
   }
 
+
+
 }
+
+
+
 
 
 /* =========================================================
+
    LOGO SERIES — CLICKABLE ACCORDION
+
    ========================================================= */
+
 .design-logo-series{
+
   position:relative;
+
 }
+
+
 
 .design-logo-trigger{
+
   position:relative;
+
   display:block;
+
   width:100%;
+
   cursor:pointer;
+
 }
+
+
 
 .design-logo-trigger-info{
+
   position:absolute;
+
   left:18px;
+
   right:18px;
+
   bottom:16px;
+
   z-index:3;
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   padding:8px 10px;
+
   border:1px solid rgba(255,255,255,.35);
+
   background:rgba(23,24,20,.82);
+
   color:#f2f0e8;
+
   font:10px var(--mono);
+
   letter-spacing:.08em;
+
   text-transform:lowercase;
+
   backdrop-filter:blur(4px);
+
   transition:background .25s ease, transform .25s ease;
+
 }
+
+
 
 .design-logo-trigger:hover .design-logo-trigger-info{
+
   background:rgba(23,24,20,.94);
+
   transform:translateY(-2px);
+
 }
+
+
 
 .logo-series-content{
+
   display:grid;
+
   grid-template-rows:0fr;
+
   opacity:0;
+
   margin-top:0;
+
   overflow:hidden;
+
   transition:
+
     grid-template-rows .5s cubic-bezier(.22,.61,.36,1),
+
     opacity .3s ease,
+
     margin-top .5s ease;
+
 }
+
+
 
 .logo-series-content > .logo-series-grid{
+
   min-height:0;
+
   overflow:hidden;
+
 }
+
+
 
 .design-logo-series.open .logo-series-content{
+
   grid-template-rows:1fr;
+
   opacity:1;
+
   margin-top:18px;
+
 }
+
+
 
 .design-logo-series.open .design-logo-trigger-info{
+
   transform:translateY(-2px);
+
 }
+
+
 
 .design-logo-series.open .design-logo-trigger-info > span:last-child{
+
   transform:rotate(45deg);
+
 }
+
+
 
 .logo-series-grid{
+
   display:grid;
+
   grid-template-columns:repeat(3,minmax(0,1fr));
+
   gap:12px;
+
   padding:12px;
+
   border:1px solid rgba(255,255,255,.22);
+
   background:#171814;
+
 }
+
+
 
 .logo-series-item{
+
   appearance:none;
+
   border:1px solid #34342f;
+
   padding:10px;
+
   background:#0f100e;
+
   color:#eee9dc;
+
   text-align:left;
+
   cursor:pointer;
+
   transition:transform .22s ease, border-color .22s ease, background .22s ease;
+
 }
+
+
 
 .logo-series-item:hover{
+
   transform:translateY(-4px);
+
   border-color:#77766f;
+
   background:#1d1e1a;
+
 }
+
+
 
 .logo-series-item img{
+
   display:block;
+
   width:100%;
+
   aspect-ratio:1/1;
+
   object-fit:contain;
+
   background:#090a08;
+
 }
+
+
 
 .logo-series-item span{
+
   display:block;
+
   margin-top:8px;
+
   font:9px var(--mono);
+
   color:#aaa79d;
+
 }
+
+
 
 @media(max-width:700px){
+
   .logo-series-grid{
+
     grid-template-columns:1fr;
+
   }
+
 }
 
+
+
 </style>
+
 </head>
+
+
+
 
 
 <body>
 
+
+
 <main>
 
 
+
+
+
 <!-- =========================================================
+
      HOME
+
      ========================================================= -->
+
+
 
 <section class="hero" id="home">
 
+
+
   <div class="moving-grid" aria-hidden="true"></div>
+
+
 
   <div class="cursor-colour" aria-hidden="true"></div>
 
 
+
+
+
   <!-- NAVIGATION -->
+
+
 
   <header class="topbar">
 
+
+
     <nav class="nav-left" aria-label="Main navigation">
 
+
+
       <button class="nav-button" data-target="home"><span>home</span></button>
+
       <button class="nav-button" data-target="about"><span>about</span></button>
+
       <button class="nav-button" data-target="work"><span>work</span></button>
+
       <button class="nav-button" data-target="photos"><span>photos</span></button>
+
       <button class="nav-button" data-target="vids"><span>vids</span></button>
+
       <button class="nav-button" data-target="design"><span>design</span></button>
+
       <button class="nav-button" data-target="words"><span>words</span></button>
+
+
 
     </nav>
 
 
+
+
+
     <div class="top-actions">
 
+
+
   <button
+
     class="nav-button"
+
     id="playlistButton"
+
     type="button"
+
     aria-expanded="false"
+
     aria-controls="musicPlayer"
+
   >
+
     <span>my playlist</span>
+
   </button>
 
+
+
   <button
+
     class="nav-button"
+
     id="movieButton"
+
     type="button"
+
     aria-expanded="false"
+
     aria-controls="movieDropdown"
+
   >
+
     <span>movie recs</span>
+
   </button>
 
+
+
   <button
+
     class="nav-button"
+
     type="button"
+
     data-target="contact"
+
   >
+
     <span>contact</span>
+
   </button>
+
+
 
 </div>
+
+
 
   </header>
 
 
+
+
+
   <!-- COVER -->
+
+
 
   <div class="hero-copy cover-copy">
 
+
+
     <h1>JASMINE.exe</h1>
 
+
+
     <div class="cover-subtitle">
+
       creative portfolio
+
     </div>
+
+
 
     <div class="cover-meta">
+
       personal archive/2026
+
     </div>
 
+
+
   </div>
+
+
+
 
 
   <!-- DOODLE -->
 
+
+
   <div class="doodle-column">
 
+
+
     <svg
+
       class="person"
+
       id="personDoodle"
+
       viewBox="0 0 300 520"
+
       role="img"
+
       aria-label="Hand-drawn Jasmine doodle"
+
     >
 
+
+
       <g
+
         stroke="#24231e"
+
         stroke-width="4"
+
         stroke-linecap="round"
+
         stroke-linejoin="round"
+
       >
 
+
+
         <path
+
           fill="none"
+
           d="M104 83 C92 45 119 18 157 23 C192 26 207 55 199 91 C193 113 176 132 159 139 C134 145 111 126 104 83Z"
+
         />
 
+
+
         <path
+
           fill="none"
+
           d="M186 65 C215 89 207 154 181 181 M193 75 C217 104 210 151 185 173"
+
         />
 
+
+
         <path
+
           fill="#f4dfc8"
+
           d="M115 74 C117 49 149 40 171 57 C188 70 183 105 166 119 C145 137 116 116 115 74Z"
+
         />
 
+
+
         <path
+
           d="M134 83h2 M161 83h2 M145 98q7 5 14 0"
+
           fill="none"
+
         />
 
+
+
         <path
+
           fill="#f2f0e8"
+
           d="M119 130 L92 148 L111 186 L128 176 L131 234 L174 234 L178 176 L194 187 L210 148 L181 130 L165 144 L137 144 Z"
+
         />
 
+
+
         <path
+
           id="shirt"
+
           fill="#8ed0ff"
+
           d="M119 130 L92 148 L111 186 L128 176 L131 234 L174 234 L178 176 L194 187 L210 148 L181 130 L165 144 L137 144 Z"
+
         />
 
+
+
         <path
+
           fill="#f4dfc8"
+
           d="M92 149 C83 167 92 185 109 194 L119 181 L107 169 L111 151Z"
+
         />
 
+
+
         <path
+
           fill="#f4dfc8"
+
           d="M194 150 C203 169 194 185 178 194 L168 181 L180 169 L176 151Z"
+
         />
 
+
+
         <path
+
           fill="#b8b8b2"
+
           d="M131 234 L149 234 L147 328 L124 327 Z"
+
         />
 
+
+
         <path
+
           fill="#b8b8b2"
+
           d="M150 234 L174 234 L178 327 L153 328 Z"
+
         />
 
+
+
         <path
+
           d="M131 238 L174 238"
+
           fill="none"
+
         />
 
+
+
         <path
+
           id="croc1"
+
           fill="#8ed0ff"
+
           d="M124 327 C116 336 111 353 119 364 C131 372 151 370 158 359 L154 348 L146 336 L141 328Z"
+
         />
 
+
+
         <path
+
           id="croc2"
+
           fill="#8ed0ff"
+
           d="M153 328 C158 337 161 350 158 359 C166 370 188 371 198 362 C204 354 199 339 188 328 L174 326Z"
+
         />
 
+
+
         <path
+
           fill="#25251f"
+
           d="M181 174 C205 175 218 199 213 236 L202 288 L177 283 L184 238Z"
+
         />
 
+
+
         <path
+
           fill="none"
+
           d="M181 178 C172 146 188 132 201 153 M72 112l-12-9 M78 94l-10-4 M222 105l11-7"
+
         />
+
+
 
       </g>
+
+
 
     </svg>
 
 
+
+
+
     <div class="doodle-controls">
+
+
 
       <div class="palette" aria-label="Colour palette">
 
+
+
         <span class="palette-title">
+
           PAINT
+
         </span>
 
+
+
         <button
+
           class="swatch active"
+
           data-colour="#8ed0ff"
+
           style="--swatch:#8ed0ff"
+
           aria-label="Sky blue"
+
         ></button>
 
+
+
         <button
+
           class="swatch"
+
           data-colour="#f29bb2"
+
           style="--swatch:#f29bb2"
+
           aria-label="Pink"
+
         ></button>
 
+
+
         <button
+
           class="swatch"
+
           data-colour="#f4ca58"
+
           style="--swatch:#f4ca58"
+
           aria-label="Yellow"
+
         ></button>
 
+
+
         <button
+
           class="swatch"
+
           data-colour="#91c99b"
+
           style="--swatch:#91c99b"
+
           aria-label="Green"
+
         ></button>
 
+
+
         <button
+
           class="swatch"
+
           data-colour="#a99ae8"
+
           style="--swatch:#a99ae8"
+
           aria-label="Lavender"
+
         ></button>
 
+
+
         <button
+
           class="swatch"
+
           data-colour="#ff8c52"
+
           style="--swatch:#ff8c52"
+
           aria-label="Orange"
+
         ></button>
+
+
 
       </div>
 
 
+
+
+
       <img
+
         class="paintbrush"
+
         src="assets/doodles/paintbrush.svg"
+
         alt=""
+
         aria-hidden="true"
+
       >
 
+
+
     </div>
+
+
 
   </div>
 
 
+
+
+
   <!-- MUSIC PLAYER -->
 
+
+
   <aside
+
     class="music-player"
+
     id="musicPlayer"
+
     aria-hidden="true"
+
   >
+
+
 
     <div class="player-head">
 
+
+
       <span>my playlist</span>
 
+
+
       <button
+
         id="closePlayer"
+
         aria-label="Close playlist"
+
       >
+
         ×
+
       </button>
 
+
+
     </div>
+
+
+
 
 
     <div class="player-body">
 
+
+
       <div class="record" id="record">
+
         <span>J</span>
+
       </div>
+
+
 
       <div class="track-info">
 
-        <div
-          class="track-title"
-          id="trackTitle"
-        >
-          No song added yet
-        </div>
+
 
         <div
-          class="track-artist"
-          id="trackArtist"
+
+          class="track-title"
+
+          id="trackTitle"
+
         >
-          Add an MP3 in assets/music/
+
+          No song added yet
+
         </div>
+
+
+
+        <div
+
+          class="track-artist"
+
+          id="trackArtist"
+
+        >
+
+          Add an MP3 in assets/music/
+
+        </div>
+
+
 
         <div class="progress">
+
           <span id="progressBar"></span>
+
         </div>
+
+
 
         <div class="controls">
 
+
+
           <button id="prev">
+
             ◀◀
+
           </button>
+
+
 
           <button id="play">
+
             ▶
+
           </button>
 
+
+
           <button id="next">
+
             ▶▶
+
           </button>
+
+
 
         </div>
 
+
+
       </div>
+
+
 
     </div>
 
 
+
+
+
     <div
+
       id="playlistList"
+
       class="playlist-list"
+
     ></div>
 
+
+
     <audio
+
       id="audio"
+
       preload="none"
+
     ></audio>
 
+
+
   </aside>
+
   <!-- MOVIE RECOMMENDATIONS DROPDOWN -->
 <aside
   class="movie-dropdown"
   id="movieDropdown"
   aria-hidden="true"
 >
-
   <div class="movie-dropdown-head">
-    <span>movie recs</span>
+    <div>
+      <span class="movie-kicker">PERSONAL FILM ARCHIVE</span>
+      <strong>movie recs</strong>
+    </div>
 
     <button
       id="closeMovieDropdown"
       type="button"
       aria-label="Close movie recommendations"
-    >
-      ×
-    </button>
+    >×</button>
   </div>
 
-  <div class="movie-dropdown-list">
+  <div class="movie-accordion">
 
-    <article class="movie-dropdown-item">
-      <div class="movie-poster-placeholder">
-        POSTER<br>01
-      </div>
-
-      <div class="movie-dropdown-info">
-        <strong>coming soon</strong>
-        <span>poster + tiny review</span>
-      </div>
-    </article>
-
-    <article class="movie-dropdown-item">
-      <div class="movie-poster-placeholder">
-        POSTER<br>02
-      </div>
-
-      <div class="movie-dropdown-info">
-        <strong>coming soon</strong>
-        <span>poster + tiny review</span>
+    <article class="movie-folder">
+      <button class="movie-folder-tab" type="button" aria-expanded="false">
+        <span class="movie-number">01</span>
+        <span class="movie-folder-name">SUPERBAD</span>
+        <span class="movie-year">2007</span>
+        <span class="movie-arrow">↗</span>
+      </button>
+      <div class="movie-folder-body">
+        <img src="assets/movies/superbad.jpe" alt="Superbad poster">
+        <div class="movie-folder-info">
+          <span>01 / COMEDY</span>
+          <strong>Superbad</strong>
+          <small>2007</small>
+        </div>
       </div>
     </article>
 
-    <article class="movie-dropdown-item">
-      <div class="movie-poster-placeholder">
-        POSTER<br>03
+    <article class="movie-folder">
+      <button class="movie-folder-tab" type="button" aria-expanded="false">
+        <span class="movie-number">02</span>
+        <span class="movie-folder-name">PROJECT X</span>
+        <span class="movie-year">2012</span>
+        <span class="movie-arrow">↗</span>
+      </button>
+      <div class="movie-folder-body">
+        <img src="assets/movies/projectx.jpe" alt="Project X poster">
+        <div class="movie-folder-info">
+          <span>02 / CHAOS</span>
+          <strong>Project X</strong>
+          <small>2012</small>
+        </div>
       </div>
+    </article>
 
-      <div class="movie-dropdown-info">
-        <strong>coming soon</strong>
-        <span>poster + tiny review</span>
+    <article class="movie-folder">
+      <button class="movie-folder-tab" type="button" aria-expanded="false">
+        <span class="movie-number">03</span>
+        <span class="movie-folder-name">GANGS OF WASSEYPUR 2</span>
+        <span class="movie-year">2012</span>
+        <span class="movie-arrow">↗</span>
+      </button>
+      <div class="movie-folder-body">
+        <img src="assets/movies/gangs of wasseypur.jpe" alt="Gangs of Wasseypur poster">
+        <div class="movie-folder-info">
+          <span>03 / CRIME</span>
+          <strong>Gangs of Wasseypur</strong>
+          <small>2012</small>
+        </div>
+      </div>
+    </article>
+
+    <article class="movie-folder">
+      <button class="movie-folder-tab" type="button" aria-expanded="false">
+        <span class="movie-number">04</span>
+        <span class="movie-folder-name">SHUTTER ISLAND</span>
+        <span class="movie-year">2010</span>
+        <span class="movie-arrow">↗</span>
+      </button>
+      <div class="movie-folder-body">
+        <img src="assets/movies/Shutter Island.jpe" alt="Shutter Island poster">
+        <div class="movie-folder-info">
+          <span>04 / PSYCHOLOGICAL</span>
+          <strong>Shutter Island</strong>
+          <small>2010</small>
+        </div>
+      </div>
+    </article>
+
+    <article class="movie-folder">
+      <button class="movie-folder-tab" type="button" aria-expanded="false">
+        <span class="movie-number">05</span>
+        <span class="movie-folder-name">PERKS OF BEING A WALLFLOWER</span>
+        <span class="movie-year">2012</span>
+        <span class="movie-arrow">↗</span>
+      </button>
+      <div class="movie-folder-body">
+        <img src="assets/movies/perksofbeingawallflower.jpe" alt="The Perks of Being a Wallflower poster">
+        <div class="movie-folder-info">
+          <span>05 / COMING OF AGE</span>
+          <strong>The Perks of Being a Wallflower</strong>
+          <small>2012</small>
+        </div>
+      </div>
+    </article>
+
+    <article class="movie-folder">
+      <button class="movie-folder-tab" type="button" aria-expanded="false">
+        <span class="movie-number">06</span>
+        <span class="movie-folder-name">DESPICABLE ME</span>
+        <span class="movie-year">2010</span>
+        <span class="movie-arrow">↗</span>
+      </button>
+      <div class="movie-folder-body">
+        <img src="assets/movies/despicableme.jpe" alt="Despicable Me poster">
+        <div class="movie-folder-info">
+          <span>06 / ANIMATION</span>
+          <strong>Despicable Me</strong>
+          <small>2010</small>
+        </div>
+      </div>
+    </article>
+
+    <article class="movie-folder">
+      <button class="movie-folder-tab" type="button" aria-expanded="false">
+        <span class="movie-number">07</span>
+        <span class="movie-folder-name">FALLEN ANGELS</span>
+        <span class="movie-year">1995</span>
+        <span class="movie-arrow">↗</span>
+      </button>
+      <div class="movie-folder-body">
+        <img src="assets/movies/fallen angels.jpe" alt="Fallen Angels poster">
+        <div class="movie-folder-info">
+          <span>07 / NOIR</span>
+          <strong>Fallen Angels</strong>
+          <small>1995</small>
+        </div>
+      </div>
+    </article>
+
+    <article class="movie-folder">
+      <button class="movie-folder-tab" type="button" aria-expanded="false">
+        <span class="movie-number">08</span>
+        <span class="movie-folder-name">THE HANGOVER</span>
+        <span class="movie-year">2009</span>
+        <span class="movie-arrow">↗</span>
+      </button>
+      <div class="movie-folder-body">
+        <img src="assets/movies/hangover.jpe" alt="The Hangover poster">
+        <div class="movie-folder-info">
+          <span>08 / COMEDY</span>
+          <strong>The Hangover</strong>
+          <small>2009</small>
+        </div>
+      </div>
+    </article>
+
+    <article class="movie-folder">
+      <button class="movie-folder-tab" type="button" aria-expanded="false">
+        <span class="movie-number">09</span>
+        <span class="movie-folder-name">Oye Lucky! Lucky Oye!</span>
+        <span class="movie-year">2008</span>
+        <span class="movie-arrow">↗</span>
+      </button>
+      <div class="movie-folder-body">
+        <img src="assets/movies/ollo.jpe" alt="Oye Lucky! Lucky Oye! poster">
+        <div class="movie-folder-info">
+          <span>09 / DELHI</span>
+          <strong>Oye Lucky! Lucky Oye!</strong>
+          <small>2008</small>
+        </div>
+      </div>
+    </article>
+
+    <article class="movie-folder">
+      <button class="movie-folder-tab" type="button" aria-expanded="false">
+        <span class="movie-number">10</span>
+        <span class="movie-folder-name">JOHNNY GADDAAR</span>
+        <span class="movie-year">2007</span>
+        <span class="movie-arrow">↗</span>
+      </button>
+      <div class="movie-folder-body">
+        <img src="assets/movies/Johnny Gaddaar.jpe" alt="Johnny Gaddaar poster">
+        <div class="movie-folder-info">
+          <span>10 / THRILLER</span>
+          <strong>Johnny Gaddaar</strong>
+          <small>2007</small>
+        </div>
       </div>
     </article>
 
   </div>
-
 </aside>
+
+
 
 </section>
 
 
+
+
+
 <!-- =========================================================
+
      ABOUT
+
      ========================================================= -->
 
+
+
 <section
+
   class="content-section about-section"
+
   id="about"
+
 >
 
+
+
   <div class="section-head">
+
     01 / ABOUT
+
   </div>
+
+
+
 
 
   <div class="about-canvas">
 
+
+
     <div class="about-window">
 
+
+
       <div class="about-window-title">
+
         read_me.txt
+
       </div>
+
+
+
 
 
       <div class="about-content">
 
+
+
         <div class="about-intro-row">
+
+
 
           <div>
 
+
+
             <h2>
+
               Hi lol, I’M JASMINE
+
             </h2>
 
+
+
             <p class="about-lede">
+
               constantly doing stuff to make my computer science degree
+
               the least interesting thing about me :P
+
             </p>
 
+
+
             <p class="vibe-line about-vibe">
+
               [ <span>but i vibe coded this</span> ]
+
             </p>
+
+
 
           </div>
 
+
+
         </div>
+
+
+
 
 
         <div class="about-grid">
 
+
+
           <div>
 
+
+
             <div class="about-label">
+
               &gt; CURRENTLY
+
             </div>
 
+
+
             <p>
+
               B.Sc.(H) Computer Science<br>
+
               University of Delhi
+
             </p>
+
+
 
           </div>
 
 
+
+
+
           <div>
 
+
+
             <div class="about-label">
+
               &gt; BASED IN
+
             </div>
 
+
+
             <p>
+
               New Delhi, India
+
             </p>
+
+
 
           </div>
 
 
+
+
+
           <div>
 
+
+
             <div class="about-label">
+
               &gt; SKILLS
+
             </div>
 
+
+
             <p>
+
               Marketing · Social Media · Content Writing<br>
+
               Copywriting · Creative Strategy · Photography<br>
+
               Filmmaking · Visual Design
+
             </p>
 
+
+
           </div>
+
+
+
 
 
           <div>
 
+
+
             <div class="about-label">
+
               &gt; TOOLS
+
             </div>
 
+
+
             <p>
+
               Lightroom · CapCut · Canva<br>
+
               HTML · CSS · SQL · PYTHON
+
             </p>
 
+
+
           </div>
+
+
 
         </div>
 
+
+
       </div>
+
+
 
     </div>
 
+
+
   </div>
+
+
 
 </section>
 
 
+
+
+
 <!-- =========================================================
+
      WORK / MARKETING
+
      ========================================================= -->
 
+
+
 <section
+
   class="content-section work-section"
+
   id="work"
+
 >
 
+
+
   <div class="section-head">
+
     02 / WORK
+
   </div>
+
+
+
 
 
   <div class="work-window">
 
+
+
     <div class="work-window-title">
+
       marketing
+
     </div>
+
+
+
 
 
     <div class="work-content">
 
+
+
       <div class="work-heading-row">
+
+
 
         <div>
 
+
+
           <h2>
+
             MARKETING
+
           </h2>
 
+
+
           <p class="work-lede">
+
             At Invictus, I worked across content, marketing and production,
+
             from developing ideas and writing scripts to getting in front of
+
             the camera and shaping the final edit.
+
           </p>
+
+
 
         </div>
 
+
+
       </div>
+
+
+
 
 
       <div class="work-videos">
 
+
+
         <div class="work-video">
 
+
+
           <video
+
             controls
+
             playsinline
+
             preload="metadata"
+
           >
 
+
+
             <source
+
               src="./assets/work/marketing-01.mp4.mp4"
+
               type="video/mp4"
+
             >
+
+
 
             Your browser does not support HTML5 video.
 
+
+
           </video>
+
+
 
         </div>
 
 
+
+
+
         <div class="work-video">
 
+
+
           <video
+
             controls
+
             playsinline
+
             preload="metadata"
+
           >
 
+
+
             <source
+
               src="./assets/work/marketing-02.mp4.mp4"
+
               type="video/mp4"
+
             >
+
+
 
             Your browser does not support HTML5 video.
 
+
+
           </video>
 
+
+
         </div>
+
+
+
 
 
         <div class="work-video">
 
+
+
           <video
+
             controls
+
             playsinline
+
             preload="metadata"
+
           >
 
+
+
             <source
+
               src="./assets/work/marketing-03.mp4.mp4"
+
               type="video/mp4"
+
             >
+
+
 
             Your browser does not support HTML5 video.
 
+
+
           </video>
 
+
+
         </div>
+
+
 
       </div>
+
+
+
 
 
       <div class="work-roles">
 
+
+
         <div class="work-role">
 
+
+
           <div class="role-icon">
+
             ☆
+
           </div>
+
+
 
           <div>
 
+
+
             <strong>
+
               CONCEPT
+
             </strong>
 
+
+
             <span>
+
               developing ideas<br>
+
               and concepts
+
             </span>
 
+
+
           </div>
+
+
 
         </div>
 
 
+
+
+
         <div class="work-role">
 
+
+
           <div class="role-icon">
+
             ☆
+
           </div>
+
+
 
           <div>
 
+
+
             <strong>
+
               SCRIPTING
+
             </strong>
 
+
+
             <span>
+
               writing hooks,<br>
+
               scripts &amp; copy
+
             </span>
 
+
+
           </div>
+
+
 
         </div>
 
 
+
+
+
         <div class="work-role">
 
+
+
           <div class="role-icon">
+
             ☆
+
           </div>
+
+
 
           <div>
 
+
+
             <strong>
+
               ON-CAMERA
+
             </strong>
 
+
+
             <span>
+
               acting &amp; appearing<br>
+
               in content
+
             </span>
+
+
 
           </div>
 
+
+
         </div>
+
+
+
 
 
         <div class="work-role">
 
+
+
           <div class="role-icon">
+
             ☆
+
           </div>
+
+
 
           <div>
 
+
+
             <strong>
+
               PRODUCTION
+
             </strong>
 
+
+
             <span>
+
               shooting &amp; helping<br>
+
               bring ideas to life
+
             </span>
+
+
 
           </div>
 
+
+
         </div>
+
+
 
       </div>
 
+
+
     </div>
 
+
+
   </div>
+
+
 
 </section>
 
 
+
+
+
 <!-- =========================================================
+
      PHOTOS
+
      ========================================================= -->
 
+
+
 <section
+
   class="content-section photos-section"
+
   id="photos"
+
 >
 
+
+
   <div class="section-head">
+
     03 / PHOTOS
+
   </div>
+
+
+
 
 
   <div class="photo-archive">
 
 
+
+
+
     <!-- ARCHIVE HEADER -->
+
+
 
     <div class="archive-intro">
 
+
+
       <div>
 
+
+
         <h2>
+
           CAMERA ROLL
+
         </h2>
 
+
+
         <p>
+
           selected frames from the archive
+
         </p>
+
+
 
       </div>
 
+
+
       <span class="archive-count">
+
         02 FOLDERS
+
       </span>
 
+
+
     </div>
+
+
+
 
 
     <!-- FOLDERS -->
 
+
+
     <div
+
       class="photo-folders"
+
       id="photoFolders"
+
     >
+
+
+
 
 
       <!-- STREET PHOTOGRAPHY -->
 
+
+
       <button
+
         class="photo-folder"
+
         type="button"
+
         data-album="street"
+
       >
 
+
+
         <div class="folder-tab">
+
           STREET
+
         </div>
+
+
 
         <div class="folder-body">
 
+
+
           <div class="folder-icon">
+
             ▱
+
           </div>
+
+
 
           <div class="folder-name">
+
             street photography
+
           </div>
+
+
 
           <div class="folder-meta">
+
             visual observations
+
           </div>
 
+
+
           <div class="folder-arrow">
+
             ↗
+
           </div>
+
+
 
         </div>
 
+
+
       </button>
+
+
+
 
 
       <!-- CONCEPT SHOOT -->
 
+
+
       <button
+
         class="photo-folder"
+
         type="button"
+
         data-album="concept"
+
       >
 
+
+
         <div class="folder-tab">
+
           CONCEPT
+
         </div>
+
+
 
         <div class="folder-body">
 
+
+
           <div class="folder-icon">
+
             ✦
+
           </div>
+
+
 
           <div class="folder-name">
+
             concept shoot
+
           </div>
+
+
 
           <div class="folder-meta">
+
             experimental portraits
+
           </div>
 
+
+
           <div class="folder-arrow">
+
             ↗
+
           </div>
+
+
 
         </div>
 
+
+
       </button>
 
+
+
     </div>
+
+
+
 
 
     <!-- ALBUM VIEW -->
 
+
+
     <div
+
       class="album-view"
+
       id="albumView"
+
       aria-hidden="true"
+
     >
+
+
 
       <div class="album-top">
 
+
+
         <button
+
           class="album-back"
+
           id="albumBack"
+
           type="button"
+
         >
+
           ← BACK TO FOLDERS
+
         </button>
 
+
+
         <span
+
           class="album-number"
+
           id="albumNumber"
+
         >
+
           01 / 02
+
         </span>
 
+
+
       </div>
+
+
+
 
 
       <div class="album-heading">
 
+
+
         <div>
 
+
+
           <div
+
             class="album-kicker"
+
             id="albumKicker"
+
           >
+
             STREET PHOTOGRAPHY
+
           </div>
 
+
+
           <h2 id="albumTitle">
+
             street photography
+
           </h2>
 
+
+
           <p id="albumDescription">
+
             Finding stories in the ordinary, somewhere between the streets and the people who fill them.
+
           </p>
 
+
+
         </div>
+
+
 
       </div>
 
 
+
+
+
       <div
+
         class="album-photos"
+
         id="albumPhotos"
+
       ></div>
+
+
 
     </div>
 
+
+
   </div>
+
+
 
 </section>
 
 
+
+
+
 <!-- =========================================================
+
      VIDS
+
      ========================================================= -->
 
+
+
 <section
+
   class="content-section vids-section"
+
   id="vids"
+
 >
 
+
+
   <div class="section-head">
+
     04 / VIDS
+
   </div>
+
+
 
   <div class="video-archive">
 
+
+
     <!-- HEADER -->
+
     <div class="video-archive-head">
+
       <div>
+
         <h2>ON VIDEO</h2>
+
         <p>an object in motion stays in motion, might as well document it</p>
+
       </div>
 
+
+
       <span class="video-archive-count">
+
         02 COLLECTIONS
+
       </span>
+
     </div>
+
+
+
 
 
     <!-- VIDEO COLLECTIONS -->
+
     <div class="video-collections" id="videoCollections">
 
+
+
       <!-- PERSONAL VIDEOS -->
+
       <button
+
         class="video-collection"
+
         type="button"
+
         data-video-collection="personal"
+
       >
 
+
+
         <div class="video-collection-number">
+
           01
+
         </div>
+
+
 
         <div class="video-collection-main">
 
+
+
           <div class="video-collection-label">
+
             PERSONAL
+
           </div>
+
+
 
           <div class="video-collection-title">
+
             SIDE QUESTS
+
           </div>
+
+
 
           <div class="video-collection-meta">
+
             edits I couldn’t not make
+
           </div>
 
+
+
         </div>
 
+
+
         <div class="video-collection-mark">
+
           ↗
+
         </div>
+
+
 
         <div class="video-collection-line"></div>
 
+
+
       </button>
+
+
+
 
 
       <!-- DOODLE VIDEOS -->
+
       <button
+
         class="video-collection"
+
         type="button"
+
         data-video-collection="doodles"
+
       >
 
+
+
         <div class="video-collection-number">
+
           02
+
         </div>
+
+
 
         <div class="video-collection-main">
 
+
+
           <div class="video-collection-label">
+
             DOODLES
+
           </div>
+
+
 
           <div class="video-collection-title">
+
             SCRIBBLES
+
           </div>
+
+
 
           <div class="video-collection-meta">
+
             sketchy business(pun intended)
+
           </div>
 
+
+
         </div>
 
+
+
         <div class="video-collection-mark">
+
           ↗
+
         </div>
+
+
 
         <div class="video-collection-line"></div>
 
+
+
       </button>
+
+
 
     </div>
 
 
+
+
+
     <!-- VIDEO DRAWER -->
+
     <div
+
       class="video-drawer"
+
       id="videoDrawer"
+
       aria-hidden="true"
+
     >
+
+
 
       <div class="video-drawer-top">
 
+
+
         <button
+
           class="video-drawer-back"
+
           id="videoDrawerBack"
+
           type="button"
+
         >
+
           ← BACK TO COLLECTIONS
+
         </button>
 
+
+
         <span
+
           class="video-drawer-number"
+
           id="videoDrawerNumber"
+
         >
+
           01 / 02
+
         </span>
 
+
+
       </div>
+
+
+
 
 
       <div class="video-drawer-heading">
 
+
+
         <div
+
           class="video-drawer-kicker"
+
           id="videoDrawerKicker"
+
         >
+
           PERSONAL
+
         </div>
 
+
+
         <h2 id="videoDrawerTitle">
+
           little videos
+
         </h2>
 
+
+
         <p id="videoDrawerDescription">
+
           Random little things I've filmed.
+
         </p>
 
+
+
       </div>
+
+
+
 
 
       <div
+
         class="video-list"
+
         id="videoList"
+
       ></div>
+
+
 
     </div>
 
+
+
   </div>
+
+
 
 </section>
 
+
+
 <!-- =========================================================
+
      DESIGN
+
      ========================================================= -->
 
+
+
 <section
+
   class="content-section design-section"
+
   id="design"
+
 >
 
+
+
   <div class="section-head">
+
     05 / DESIGN
+
   </div>
+
+
 
   <div class="design-gallery-wrap">
 
+
+
     <div class="design-intro">
 
+
+
       <div>
+
         <h2>DESIGN</h2>
+
         <p>making things I’d only seen in my head</p>
+
       </div>
+
+
 
       <div class="design-note">
+
         made, edited &amp; played around with
+
       </div>
 
+
+
     </div>
+
+
+
 
 
     <div class="design-filter" aria-label="Filter design work">
 
+
+
       <button
+
         class="design-filter-btn active"
+
         type="button"
+
         data-filter="all"
+
       >
+
         ALL (07)
+
       </button>
 
+
+
       <button
+
         class="design-filter-btn"
+
         type="button"
+
         data-filter="poster"
+
       >
+
         POSTERS (04)
+
       </button>
 
+
+
       <button
+
         class="design-filter-btn"
+
         type="button"
+
         data-filter="logo"
+
       >
+
         LOGOS (03)
+
       </button>
+
+
 
     </div>
+
+
+
 
 
     <div class="design-grid">
 
 
+
+
+
       <!-- AJ STYLES -->
 
+
+
       <article
+
         class="design-card"
+
         data-category="poster"
+
       >
 
+
+
         <button
+
           class="design-image-button"
+
           type="button"
+
           data-design="ajstyles"
+
         >
 
+
+
           <img
+
             src="assets/design/ajstyles.png"
+
             alt="aj styles design"
+
             loading="lazy"
+
           >
 
+
+
           <span class="design-image-number">
+
             01
+
           </span>
+
+
 
         </button>
 
 
+
+
+
         <div class="design-card-info">
 
+
+
           <div class="design-card-top">
+
             <span>aj styles</span>
+
             <span>poster</span>
+
           </div>
 
+
+
           <p>
+
             just a lil AJ Styles propaganda
+
           </p>
+
+
 
         </div>
 
+
+
       </article>
+
+
+
+
 
 
 
       <!-- THE SHIELD -->
 
+
+
       <article
+
         class="design-card"
+
         data-category="poster"
+
       >
 
+
+
         <button
+
           class="design-image-button"
+
           type="button"
+
           data-design="theshield"
+
         >
 
+
+
           <img
+
             src="assets/design/theshield.png"
+
             alt="the shield design"
+
             loading="lazy"
+
           >
 
+
+
           <span class="design-image-number">
+
             02
+
           </span>
+
+
 
         </button>
 
 
+
+
+
         <div class="design-card-info">
 
+
+
           <div class="design-card-top">
+
             <span>the shield</span>
+
             <span>poster</span>
+
           </div>
 
+
+
           <p>
+
             three men and a very good entrance
+
           </p>
+
+
 
         </div>
 
+
+
       </article>
+
+
+
+
 
 
 
       <!-- DBR -->
 
+
+
       <article
+
         class="design-card"
+
         data-category="poster"
+
       >
 
+
+
         <button
+
           class="design-image-button"
+
           type="button"
+
           data-design="dbralt"
+
         >
 
+
+
           <img
+
             src="assets/design/dbralt.png"
+
             alt="dbralt design"
+
             loading="lazy"
+
           >
 
+
+
           <span class="design-image-number">
+
             03
+
           </span>
+
+
 
         </button>
 
 
+
+
+
         <div class="design-card-info">
 
+
+
           <div class="design-card-top">
+
             <span>dbralt</span>
+
             <span>poster</span>
+
           </div>
 
+
+
           <p>
+
             had to pay my respects
+
           </p>
+
+
 
         </div>
 
+
+
       </article>
+
+
+
+
 
 
 
       <!-- GULAB XX -->
 
+
+
       <article
+
         class="design-card"
+
         data-category="poster"
+
       >
 
+
+
         <button
+
           class="design-image-button"
+
           type="button"
+
           data-design="gulabxx"
+
         >
 
+
+
           <img
+
             src="assets/design/gulabxx.png"
+
             alt="gulab xx design"
+
             loading="lazy"
+
           >
 
+
+
           <span class="design-image-number">
+
             04
+
           </span>
+
+
 
         </button>
 
 
+
+
+
         <div class="design-card-info">
 
+
+
           <div class="design-card-top">
+
             <span>gulab xx</span>
+
             <span>poster</span>
+
           </div>
 
+
+
           <p>
+
             gulab.
+
           </p>
 
+
+
         </div>
+
+
 
       </article>
 
 
 
+
+
+
+
       <!-- LOGOS / THREE LOGO SERIES -->
+
+
 
 <article class="design-card design-logo-series" data-category="logo">
 
+
+
   <button
+
     class="design-image-button design-logo-trigger"
+
     type="button"
+
     aria-expanded="false"
+
     aria-controls="logoSeriesContent"
+
   >
 
+
+
     <img
+
       src="assets/design/ball1.png"
+
       alt="hand-drawn logo designs"
+
       loading="lazy"
+
     >
 
+
+
     <span class="design-image-number">
+
       05
+
     </span>
 
+
+
     <span class="design-logo-trigger-info">
+
       <span>logos</span>
+
       <span>+</span>
+
     </span>
+
+
 
   </button>
 
 
+
+
+
   <div class="design-card-info">
+
+
 
     <div class="design-card-top">
 
+
+
       <span>logos</span>
+
+
 
       <span>3 variations</span>
 
+
+
     </div>
 
+
+
     <p>
+
       Hand-drawn logo experiments edited and refined
+
       digitally in Photoshop.
+
     </p>
 
+
+
   </div>
+
+
+
 
 
   <!-- THREE LOGOS — ACCORDION CONTENT -->
 
+
+
   <div
+
     class="logo-series-content"
+
     id="logoSeriesContent"
+
   >
+
+
 
     <div class="logo-series-grid">
 
 
+
+
+
       <button
+
         class="logo-series-item"
+
         type="button"
+
         data-design="ball1"
+
       >
 
+
+
         <img
+
           src="assets/design/ball1.png"
+
           alt="ball 1 logo"
+
           loading="lazy"
+
         >
+
+
 
         <span>ball1</span>
 
+
+
       </button>
 
 
+
+
+
       <button
+
         class="logo-series-item"
+
         type="button"
+
         data-design="ball2"
+
       >
 
+
+
         <img
+
           src="assets/design/ball2.png"
+
           alt="ball 2 logo"
+
           loading="lazy"
+
         >
+
+
 
         <span>ball2</span>
 
+
+
       </button>
+
+
+
 
 
       <button
+
         class="logo-series-item"
+
         type="button"
+
         data-design="ball5"
+
       >
 
+
+
         <img
+
           src="assets/design/ball5.png"
+
           alt="ball 5 logo"
+
           loading="lazy"
+
         >
+
+
 
         <span>ball5</span>
 
+
+
       </button>
+
+
+
 
 
     </div>
 
+
+
   </div>
+
+
 
 </article>
 
+
+
   <!-- DESIGN LIGHTBOX -->
 
+
+
   <div
+
     class="design-lightbox"
+
     id="designLightbox"
+
     aria-hidden="true"
+
   >
 
+
+
     <button
+
       class="design-lightbox-close"
+
       id="designLightboxClose"
+
       type="button"
+
       aria-label="Close design"
+
     >
+
       ×
+
     </button>
+
+
+
 
 
     <div class="design-lightbox-inner">
 
+
+
       <img
+
         id="designLightboxImage"
+
         src=""
+
         alt=""
+
       >
+
+
+
 
 
       <div class="design-lightbox-copy">
 
+
+
         <div
+
           class="design-lightbox-meta"
+
           id="designLightboxMeta"
+
         ></div>
+
+
 
         <h3 id="designLightboxTitle"></h3>
 
+
+
         <p id="designLightboxDescription"></p>
+
+
 
       </div>
 
+
+
     </div>
 
+
+
   </div>
+
+
 
 </section>
 
 
+
+
+
 <!-- =========================================================
+
      WORDS
+
      ========================================================= -->
+
+
 
 <section class="content-section words-section" id="words">
 
+
+
   <div class="section-head">06 / WORDS</div>
 
+
+
   <!-- =========================
+
        SUBSTACK FEATURE
+
   ========================== -->
+
+
 
   <div class="words-window">
 
+
+
     <div class="words-window-title">
+
       writing / 01
+
     </div>
+
+
 
     <div class="words-content">
 
+
+
       <div class="words-number">
+
         01 / SUBSTACK
+
       </div>
+
+
 
       <h2>WHAT LIVES IN A PLAYLIST</h2>
 
+
+
       <p class="words-subtitle">
+
         an unofficial study in musical oversharing
+
       </p>
+
+
 
       <div class="words-feature">
 
+
+
         <div class="words-feature-text">
 
+
+
           <p>
+
             A playlist doesn’t really let you explain yourself.
+
             It just lets you leave evidence.
+
           </p>
 
+
+
           <p class="words-small">
+
             A piece about playlists, memory, people, and the strange
+
             little pieces of ourselves we accidentally leave behind.
+
           </p>
+
+
 
           <div class="words-links">
 
-            <a
-              href="https://substack.com/@jasminesaurus/note/p-216718191?r=934i66&utm_source=notes-share-action&utm_medium=web"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              READ THE FULL PIECE ↗
-            </a>
+
 
             <a
-              href="https://music.apple.com/in/playlist/landslide/pl.u-NpXmmlmt4EG7DBW"
+
+              href="https://substack.com/@jasminesaurus/note/p-216718191?r=934i66&utm_source=notes-share-action&utm_medium=web"
+
               target="_blank"
+
               rel="noopener noreferrer"
+
             >
-              LISTEN ALONG ↗
+
+              READ THE FULL PIECE ↗
+
             </a>
+
+
+
+            <a
+
+              href="https://music.apple.com/in/playlist/landslide/pl.u-NpXmmlmt4EG7DBW"
+
+              target="_blank"
+
+              rel="noopener noreferrer"
+
+            >
+
+              LISTEN ALONG ↗
+
+            </a>
+
+
 
           </div>
 
+
+
         </div>
+
+
 
         <div class="playlist-card">
 
+
+
           <div class="playlist-card-label">
+
             LISTEN ALONG
+
           </div>
+
+
 
           <div class="playlist-card-title">
+
             LANDSLIDE
+
           </div>
+
+
 
           <div class="playlist-card-text">
+
             the playlist behind the piece
+
           </div>
 
+
+
           <div class="playlist-record">
+
             J
+
           </div>
+
+
 
         </div>
 
+
+
       </div>
 
+
+
     </div>
+
+
 
   </div>
 
 
+
+
+
   <!-- =========================
+
        INVICTUS WRITING
+
   ========================== -->
+
+
 
   <div class="words-window invictus-writing">
 
+
+
     <div class="words-window-title">
+
       writing / 02
+
     </div>
+
+
 
     <div class="words-content">
 
+
+
       <div class="words-number">
+
         02 / INVICTUS
+
       </div>
+
+
 
       <h2>CAPTIONS</h2>
 
+
+
       <p class="words-subtitle">
+
         social copy, introductions, campaigns &amp; farewell writing
+
       </p>
+
+
+
 
 
       <div class="caption-list">
 
 
+
+
+
         <!-- KISHVEEN -->
+
+
 
         <details class="caption-item">
 
+
+
           <summary>
+
             <span class="caption-index">01</span>
 
+
+
             <span class="caption-info">
+
               <strong>KISHVEEN</strong>
+
               <small>farewell / advisory</small>
+
             </span>
 
+
+
             <span class="caption-arrow">+</span>
+
           </summary>
+
+
 
           <div class="caption-body">
 
+
+
             <p>
+
               Bidding farewell to our seniors is hard, but saying goodbye
+
               to Kishveen? That’s like trying to spot her in a crowd,
+
               almost impossible, both because she’s tiny and because we’re
+
               not emotionally ready :’(
+
             </p>
 
+
+
             <p>
+
               Our little (literally) bundle of joy, often affectionately
+
               known as Kishu, has been the heart of so many Invictus memories.
+
             </p>
 
+
+
             <p>
+
               Whether it was playing the role of a kid in every single
+
               photostory and photography competition (a role she truly owned)
+
               or her iconic blue water bottle becoming a silent, ever-present
+
               member of our team, or her classic warning of ‘fielding lagegi
+
               teri’ that somehow made us smile, her presence was unforgettable.
+
             </p>
 
+
+
             <p>
+
               You haven’t really known Kishveen until you’ve experienced the
+
               emotional rollercoaster of watching her steal your phone, deny
+
               it, then handing it back with a giggle like it was a gift.
+
               Elite menace and fully committed to the bit.
+
             </p>
 
+
+
             <p>
+
               She could most often be seen charging up and jumping while
+
               trying to hit people twice her size, truly making her the most
+
               feared core member (shivering while typing ts)
+
             </p>
 
+
+
             <p>
+
               As our Advisory, she consistently guided us with a calm demeanor
+
               and a clear vision. Her infectious cheer and unique quirks will
+
               be deeply missed.
+
             </p>
 
+
+
             <p>
+
               Thank you for filling our days with unmatched energy and
+
               endless good vibes.
+
             </p>
 
+
+
             <p>
+
               Team INvictus wishes Kishveen all the love and luck in this
+
               next chapter - may your adventures be as vibrant as you are &lt;3
+
             </p>
+
+
 
           </div>
 
+
+
         </details>
+
+
+
 
 
         <!-- ADITYA -->
 
+
+
         <details class="caption-item">
+
+
 
           <summary>
 
+
+
             <span class="caption-index">02</span>
 
+
+
             <span class="caption-info">
+
               <strong>ADITYA</strong>
+
               <small>introduction / head of design</small>
+
             </span>
+
+
 
             <span class="caption-arrow">+</span>
 
+
+
           </summary>
+
+
 
           <div class="caption-body">
 
+
+
             <p>
+
               Meet Aditya, better known as Bhagat, the guy who somehow manages
+
               to be good at almost everything. Design? Untouchable. Acting?
+
               Lowkey solid. Photography? Don’t even get us started, bass
+
               insaan bekaar hai (just kidding(not really)).
+
             </p>
 
+
+
             <p>
+
               His Instagram (shoutout postedbyaditya) is basically a carefully
+
               curated Pinterest board which he built for himself, packed with
+
               bangers that drop every other day.
+
             </p>
 
+
+
             <p>
+
               Each piece has that Bhagat-level attention to detail, the kind
+
               that keeps his portfolio stacked with winners.
+
             </p>
 
+
+
             <p>
+
               Unlike his 0.5x slowed talking speed, his story spamming is
+
               relentless. Blink and you’ll have ten new stories to catch up on.
+
             </p>
 
+
+
             <p>
+
               This year’s gonna feel like scrolling through his Instagram feed
+
               irl, banger after banger, designs that keep reminding everyone
+
               why he’s the go-to design guy and that signature vibe we can’t
+
               get enough of.
+
             </p>
 
+
+
             <p>
+
               INvictus is proud to present Aditya as our HEAD OF DESIGN for
+
               the year 2025-26.
+
             </p>
+
+
 
           </div>
 
+
+
         </details>
+
+
+
 
 
         <!-- FPS -->
 
+
+
         <details class="caption-item">
+
+
 
           <summary>
 
+
+
             <span class="caption-index">03</span>
 
+
+
             <span class="caption-info">
+
               <strong>FPS ’26</strong>
+
               <small>recruitment / campaign copy</small>
+
             </span>
+
+
 
             <span class="caption-arrow">+</span>
 
+
+
           </summary>
+
+
 
           <div class="caption-body">
 
+
+
             <p>
+
               Great ideas don’t belong in your notes app, they belong on
+
               screens, in photos, in films and designs that people can’t
+
               scroll past. It’s your turn to create something that makes
+
               people stop and look 😳
+
             </p>
 
+
+
             <p>
+
               Explore your creative potential! Join us for:
+
             </p>
 
+
+
             <p>
+
               DSLR Photography<br>
+
               Mobile Photography<br>
+
               Filmmaking<br>
+
               Graphic Designing<br>
+
               Print Modelling<br>
+
               Video Editing<br>
+
               Sound Engineering
+
             </p>
 
+
+
             <p>
+
               Stay tuned for further details;). WE ARE BACK!!!
+
             </p>
 
+
+
             <p>
+
               INvictus presents FPS’ 26 💫
+
             </p>
 
+
+
             <p>
+
               Whether you’re behind the camera, turning ideas into striking
+
               visuals or crafting moments that leave an impact, this is YOUR
+
               stage to showcase your skills 🫵🏽👀
+
             </p>
 
+
+
             <p>
+
               bigger ideas, stronger narratives and an even better experience
+
               awaits 📸🎥🔥
+
             </p>
+
+
 
           </div>
 
+
+
         </details>
+
+
+
 
 
         <!-- DO NOT DISTURB -->
 
+
+
         <details class="caption-item">
+
+
 
           <summary>
 
+
+
             <span class="caption-index">04</span>
 
+
+
             <span class="caption-info">
+
               <strong>DO NOT DISTURB</strong>
+
               <small>short film / promotional copy</small>
+
             </span>
+
+
 
             <span class="caption-arrow">+</span>
 
+
+
           </summary>
+
+
 
           <div class="caption-body">
 
+
+
             <p>
+
               A new address. A fresh start.
+
               But some places don’t welcome change.
+
             </p>
 
+
+
             <p>
+
               INvictus presents ‘Do Not Disturb’- a short film where every
+
               warning has a past 🎬
+
             </p>
 
+
+
             <p>
+
               A house meant for new beginnings.
+
               A presence unwilling to let go.
+
             </p>
 
+
+
             <p>
+
               As warnings grow harder to ignore, some doors begin to reveal
+
               what was never truly left behind 🤫
+
             </p>
 
+
+
             <p>
+
               Prepare yourself for a story that was never meant to be reopened 🎬
+
             </p>
+
+
 
           </div>
 
+
+
         </details>
+
+
+
 
 
         <!-- STUDIO SHOOT -->
 
+
+
         <details class="caption-item">
+
+
 
           <summary>
 
+
+
             <span class="caption-index">05</span>
 
+
+
             <span class="caption-info">
+
               <strong>STUDIO SHOOT</strong>
+
               <small>event / social copy</small>
+
             </span>
+
+
 
             <span class="caption-arrow">+</span>
 
+
+
           </summary>
+
+
 
           <div class="caption-body">
 
+
+
             <p>
+
               Lights on, camera rolling and us right where we belong 📸
+
             </p>
 
+
+
             <p>
+
               Two days of endless laughter, creative ideas, teamwork and all
+
               the fun that comes with bringing our vision to life. From the
+
               BTS moments to the memories made in between, our first studio
+
               shoot gave us so much more than just pictures ⭐️
+
             </p>
 
+
+
             <p>
+
               Big love to everyone who showed up, put in the work and made
+
               these two days what they were. Couldn’t have done it without
+
               every bit of energy, effort and fun that everyone brought along 💫
+
             </p>
 
+
+
             <p>
+
               Grateful to @studiobystfu for being a part of this and making
+
               our first studio shoot even more special 💖
+
             </p>
 
+
+
             <p>
+
               safe to say, this won’t be our last ;)
+
             </p>
+
+
 
           </div>
 
+
+
         </details>
+
+
+
 
 
         <!-- GARVIT -->
 
+
+
         <details class="caption-item">
+
+
 
           <summary>
 
+
+
             <span class="caption-index">06</span>
 
+
+
             <span class="caption-info">
+
               <strong>GARVIT</strong>
+
               <small>farewell / supervisor</small>
+
             </span>
+
+
 
             <span class="caption-arrow">+</span>
 
+
+
           </summary>
+
+
 
           <div class="caption-body">
 
+
+
             <p>
+
               “Hi, I’m Garvit. I’m the Talwar of Invictus.”
+
               (yea, we still haven’t recovered from that introduction)
+
             </p>
 
+
+
             <p>
+
               You don’t really “meet” Garvit, you just eventually learn that
+
               he’s somehow the whitest person alive, owns an amazing jersey
+
               collection and is perpetually one clash royale match away from
+
               greatness.
+
             </p>
 
+
+
             <p>
+
               Our beloved supervisor (self-appointed, but unanimously accepted),
+
               honorary core member and without a doubt one of the funniest
+
               people we’ve ever met.
+
             </p>
 
+
+
             <p>
+
               If there was a trend worth knowing or a meme worth laughing at,
+
               chances are Garvit had already seen it. His endless supply of
+
               internet lore ended up being an unexpectedly huge asset whenever
+
               it came to marketing.
+
             </p>
 
+
+
             <p>
+
               But beyond all the jokes, jerseys and Clash Royale matches,
+
               Garvit has been one of the biggest support systems this society
+
               could’ve asked for.
+
             </p>
 
+
+
             <p>
+
               Thankyou for every laugh, every meme rec, every jersey rec and
+
               for simply always being there.
+
             </p>
 
+
+
             <p>
+
               byebye Gravity Talwar of Invictus ⚪️
+
             </p>
+
+
 
           </div>
 
+
+
         </details>
+
+
+
 
 
         <!-- HARMAN -->
 
+
+
         <details class="caption-item">
+
+
 
           <summary>
 
+
+
             <span class="caption-index">07</span>
 
+
+
             <span class="caption-info">
+
               <strong>HARMAN</strong>
+
               <small>farewell / filmmaking</small>
+
             </span>
+
+
 
             <span class="caption-arrow">+</span>
 
+
+
           </summary>
+
+
 
           <div class="caption-body">
 
+
+
             <p>
+
               ☎️ Tring Tring... If you heard that in Harman’s voice,
+
               congratulations, you’ve had the privilege of knowing one of the
+
               funniest people to ever walk into Invictus.
+
             </p>
 
+
+
             <p>
+
               One-third of the Rajouri gang, a full-time valo enthusiast,
+
               owner of what is arguably the most exclusive Discord server that
+
               has slowly but surely collected half the society, and the man
+
               responsible for some of our favourite inside jokes.
+
             </p>
 
+
+
             <p>
+
               Harman somehow had the ability to turn the most random moments
+
               into core memories.
+
             </p>
 
+
+
             <p>
+
               Jokes apart (because for once, we’re actually being serious),
+
               if there was one thing Harman absolutely owned, it was filmmaking.
+
               From shooting to post-production, his work always spoke for itself
+
               and every project somehow came back looking cooler than we imagined.
+
             </p>
 
+
+
             <p>
+
               He didn’t just document this tenure, he shaped the way it’ll be
+
               remembered.
+
             </p>
 
+
+
             <p>
+
               Thank you for making this tenure look as unforgettable as it felt.
+
               Invictus genuinely wouldn’t have been the same without you, Harman.
+
             </p>
 
+
+
             <p>
+
               goodbye HarmanPyaara 💔 we’ll miss you.
+
             </p>
+
+
 
           </div>
 
+
+
         </details>
+
+
+
 
 
         <!-- JAPLEEN -->
 
+
+
         <details class="caption-item">
+
+
 
           <summary>
 
+
+
             <span class="caption-index">08</span>
 
+
+
             <span class="caption-info">
+
               <strong>JAPLEEN</strong>
+
               <small>introduction / president</small>
+
             </span>
+
+
 
             <span class="caption-arrow">+</span>
 
+
+
           </summary>
+
+
 
           <div class="caption-body">
 
+
+
             <p>
+
               Dear Diljit and Dr Zeus, if you're reading this, she's still
+
               waiting for the collab. Luckily, one wait ends here. It's time
+
               to introduce our new president, Japleen 💫
+
             </p>
 
+
+
             <p>
+
               The one who's probably on a trip right now, but somehow still
+
               knows exactly what's happening next week. The one who'll come home
+
               from a trip only to say “yaar ghoomne jaana hai”.
+
             </p>
 
+
+
             <p>
+
               Powered by diet coke(thandi), King's chaap(north campus ki) and
+
               an unreasonable number of playlists, Japleen can go from old
+
               diljit to one direction in one tap and somehow never lose the vibe.
+
             </p>
 
+
+
             <p>
+
               One-third of the Good Kaurs, undefeated champion of misplacing
+
               her favourite tops, a sitcom enthusiast, giver of the warmest
+
               hugs and the kind of person who makes even the busiest days feel
+
               manageable.
+
             </p>
 
+
+
             <p>
+
               More than the title she holds, it's the impact she leaves behind
+
               that defines her.
+
             </p>
 
+
+
             <p>
+
               INvictus is proud to present Japleen as our PRESIDENT for the
+
               year 2026-2027.
+
             </p>
+
+
 
           </div>
 
+
+
         </details>
+
+
+
 
 
         <!-- ISHMEET -->
 
+
+
         <details class="caption-item">
+
+
 
           <summary>
 
+
+
             <span class="caption-index">09</span>
 
+
+
             <span class="caption-info">
+
               <strong>ISHMEET</strong>
+
               <small>introduction / general secretary</small>
+
             </span>
+
+
 
             <span class="caption-arrow">+</span>
 
+
+
           </summary>
+
+
 
           <div class="caption-body">
 
+
+
             <p>
+
               The wait is over. Ishmeet finally found a flat after a veryyy
+
               long search (pls congratulate her in the comments all).
+
               Oh, and congratulations on becoming our General Secretary too 😘
+
             </p>
 
+
+
             <p>
+
               The one who came to Delhi saying "aap" to everyone and is now
+
               slowly (and unfortunately) transforming into a Delhi girl.
+
             </p>
 
+
+
             <p>
+
               One-third of the Good Kaurs, a full-time SOUR (talkin bout
+
               olivia’s album) enthusiast, owner of a tic-tac-toe-shaped
+
               forehead scar and the biggest fan of Whiskey (the goodest boy
+
               back in Lucknow).
+
             </p>
 
+
+
             <p>
+
               There's a reason so much of what happened during FPS looked the
+
               way it did. Ishmeet poured countless hours into every creative,
+
               every detail and every idea and it always showed.
+
             </p>
 
+
+
             <p>
+
               Dependable, thoughtful and always ready to step up, she's been
+
               someone the team could count on every single time.
+
             </p>
 
+
+
             <p>
+
               She has been behind so many moments that made Invictus what it
+
               is today. Now, we can't wait to see her lead the ones yet to come.
+
             </p>
 
+
+
             <p>
+
               INvictus is proud to present Ishmeet as our GENERAL SECRETARY
+
               for the year 2026-27.
+
             </p>
+
+
 
           </div>
 
+
+
         </details>
 
+
+
       </div>
 
+
+
     </div>
+
+
 
   </div>
 
-</section>
 
-<!-- =========================================================
-     MOVIE RECS
-     ========================================================= -->
-
-<section class="content-section movie-recs-section" id="movie-recs">
-
-  <div class="section-head">07 / MOVIE RECS</div>
-
-  <div class="movie-recs-page">
-
-    <div class="movie-recs-page-head">
-      <div>
-        <h2>MOVIE RECS</h2>
-        <p>things i've watched / liked / would make you watch</p>
-      </div>
-      <span>03 PICKS</span>
-    </div>
-
-    <div class="movie-recs-grid">
-
-      <button class="movie-page-card" type="button" data-movie-card>
-        <span class="movie-page-poster">POSTER<br>01</span>
-        <span class="movie-page-info">
-          <strong>COMING SOON</strong>
-          <small>poster + tiny review</small>
-        </span>
-        <span class="movie-page-arrow">+</span>
-        <span class="movie-page-review">Poster and tiny review coming soon.</span>
-      </button>
-
-      <button class="movie-page-card" type="button" data-movie-card>
-        <span class="movie-page-poster">POSTER<br>02</span>
-        <span class="movie-page-info">
-          <strong>COMING SOON</strong>
-          <small>poster + tiny review</small>
-        </span>
-        <span class="movie-page-arrow">+</span>
-        <span class="movie-page-review">Poster and tiny review coming soon.</span>
-      </button>
-
-      <button class="movie-page-card" type="button" data-movie-card>
-        <span class="movie-page-poster">POSTER<br>03</span>
-        <span class="movie-page-info">
-          <strong>COMING SOON</strong>
-          <small>poster + tiny review</small>
-        </span>
-        <span class="movie-page-arrow">+</span>
-        <span class="movie-page-review">Poster and tiny review coming soon.</span>
-      </button>
-
-    </div>
-
-  </div>
 
 </section>
 
 
+
 <!-- =========================================================
+
      CONTACT
+
      ========================================================= -->
+
+
 
 <section
+
   class="content-section contact-section"
+
   id="contact"
+
 >
 
+
+
   <div class="section-head">
+
     08 / CONTACT
+
   </div>
+
+
+
 
 
   <div class="contact-window">
 
+
+
     <div class="contact-window-title">
+
       contact.exe
+
     </div>
+
+
+
 
 
     <div class="contact-content">
 
+
+
       <div class="contact-kicker">
+
         MADE IT THIS FAR?
+
       </div>
 
+
+
       <h2>
+
         might as well say hi
+
       </h2>
 
+
+
       <p class="contact-lede">
+
         For work, collaborations, internships, creative projects, or simply saying hello, come find me :)
+
       </p>
+
+
+
 
 
       <div class="contact-links">
 
+
+
         <a href="mailto:jasmine12.work@gmail.com">
+
           <span>01</span>
+
           EMAIL
+
           <small>↗</small>
+
         </a>
 
+
+
         <a
+
           href="https://instagram.com/_duhjasmine"
+
           target="_blank"
+
           rel="noopener noreferrer"
+
         >
+
           <span>02</span>
+
           INSTAGRAM
+
           <small>↗</small>
+
         </a>
 
+
+
         <a
+
           href="https://www.linkedin.com/in/YOUR-USERNAME/"
+
           target="_blank"
+
           rel="noopener noreferrer"
+
         >
+
           <span>03</span>
+
           LINKEDIN
+
           <small>↗</small>
+
         </a>
 
+
+
         <a
+
   href="https://jasminesaurus.substack.com/"
+
   target="_blank"
+
   rel="noopener noreferrer"
+
 >
+
   <span>04</span>
+
   SUBSTACK
+
   <small>↗</small>
+
 </a>
 
+
+
       </div>
+
+
+
 
 
       <div class="contact-footer">
+
         JASMINE.exe
+
         <span>here for the good stuff · 2026</span>
+
       </div>
+
+
 
     </div>
 
+
+
   </div>
 
+
+
 </section>
+
 </section>
+
+
+
 
 
 </main>
 
 
+
+
+
 <!-- YOUR EXISTING SCRIPT -->
+
+
 
 <script src="script.js"></script>
 
 
+
+
+
 <!-- =========================================================
+
      PHOTO ALBUM JAVASCRIPT
+
      ========================================================= -->
+
+
 
 <script>
 
+
+
 const photoAlbums = {
+
+
 
   street: {
 
+
+
     number: "01 / 02",
+
+
 
     kicker: "STREET PHOTOGRAPHY",
 
+
+
     title: "street photography",
 
+
+
     description:
+
       "Small observations from places, people and everyday moments — people, work, streets and the details that usually get missed.",
+
+
 
     photos: [
 
+
+
       "IMG_9456.jpg",
+
+
 
       "IMG_9478.jpg",
 
+
+
       "IMG_9389.jpg",
+
+
 
       "IMG_9379.jpg",
 
+
+
       "IMG_9438.jpg",
+
+
 
       "IMG_5466 (3).jpg",
 
+
+
       "IMG_6248.HEIC (1).jpg"
 
+
+
     ]
+
+
 
   },
 
 
+
+
+
   concept: {
+
+
 
     number: "02 / 02",
 
+
+
     kicker: "CONCEPT SHOOT",
+
+
 
     title: "concept shoot",
 
+
+
     description:
+
       "Experimental portraits built around colour, movement, light and layered visual treatments.",
+
+
 
     photos: [
 
+
+
       "IMG_8874 (1).jpg",
+
+
 
       "IMG_1473.jpg",
 
+
+
       "DSC08975 (1) (3).jpg",
+
+
 
       "1000000332.jpg",
 
+
+
       "IMG_1470.jpg",
+
+
 
       "IMG_5969 (1) (1).jpg",
 
+
+
       "1000001751.jpg"
+
+
 
     ]
 
+
+
   }
+
+
 
 };
 
 
+
+
+
 /* ELEMENTS */
 
+
+
 const albumView =
+
   document.getElementById("albumView");
 
+
+
 const albumPhotos =
+
   document.getElementById("albumPhotos");
 
+
+
 const albumNumber =
+
   document.getElementById("albumNumber");
 
+
+
 const albumKicker =
+
   document.getElementById("albumKicker");
 
+
+
 const albumTitle =
+
   document.getElementById("albumTitle");
 
+
+
 const albumDescription =
+
   document.getElementById("albumDescription");
 
+
+
 const photoFolders =
+
   document.getElementById("photoFolders");
 
+
+
 const albumBack =
+
   document.getElementById("albumBack");
+
+
+
 
 
 /* CREATE SAFE IMAGE PATH */
 
+
+
 function photoPath(filename){
 
+
+
   return "assets/photos/" +
+
     encodeURIComponent(filename);
 
+
+
 }
+
+
+
 
 
 /* OPEN ALBUM */
 
+
+
 function openPhotoAlbum(albumName){
 
+
+
   const album =
+
     photoAlbums[albumName];
 
+
+
   if(!album){
+
     return;
+
   }
 
 
+
+
+
   albumNumber.textContent =
+
     album.number;
 
+
+
   albumKicker.textContent =
+
     album.kicker;
 
+
+
   albumTitle.textContent =
+
     album.title;
 
+
+
   albumDescription.textContent =
+
     album.description;
 
 
+
+
+
   albumPhotos.innerHTML =
+
     album.photos.map(
+
       (filename,index) => `
+
+
 
         <figure class="album-photo">
 
+
+
           <img
+
             src="${photoPath(filename)}"
+
             alt="${album.title} — photo ${index + 1}"
+
             loading="lazy"
+
           >
 
+
+
           <figcaption>
+
             ${String(index + 1).padStart(2,"0")}
+
             /
+
             ${String(album.photos.length).padStart(2,"0")}
+
           </figcaption>
+
+
 
         </figure>
 
+
+
       `
+
     ).join("");
 
 
+
+
+
   photoFolders.style.display =
+
     "none";
 
+
+
   albumView.classList.add(
+
     "open"
+
   );
 
+
+
   albumView.setAttribute(
+
     "aria-hidden",
+
     "false"
+
   );
+
+
+
 
 
   albumView.scrollIntoView({
+
     behavior:"smooth",
+
     block:"start"
+
   });
+
+
 
 }
 
 
+
+
+
 /* FOLDER CLICK */
 
+
+
 document
+
   .querySelectorAll(".photo-folder")
+
   .forEach(folder => {
 
+
+
     folder.addEventListener(
+
       "click",
+
       () => {
 
+
+
         openPhotoAlbum(
+
           folder.dataset.album
+
         );
 
+
+
       }
+
     );
 
+
+
   });
+
+
+
 
 
 /* BACK BUTTON */
 
+
+
 albumBack.addEventListener(
+
   "click",
+
   () => {
 
+
+
     albumView.classList.remove(
+
       "open"
+
     );
 
+
+
     albumView.setAttribute(
+
       "aria-hidden",
+
       "true"
+
     );
+
+
 
     albumPhotos.innerHTML = "";
 
+
+
     photoFolders.style.display =
+
       "";
 
+
+
     photoFolders.scrollIntoView({
+
       behavior:"smooth",
+
       block:"center"
+
     });
 
+
+
   }
+
 );
 
+
+
 </script>
+
+
+
+
 
 
 
 <!-- =========================================================
+
      LOGO SERIES ACCORDION
+
      ========================================================= -->
+
 <script>
+
 (function () {
+
   const logoCard = document.querySelector('.design-logo-series');
+
   const logoTrigger = document.querySelector('.design-logo-trigger');
+
   const logoContent = document.getElementById('logoSeriesContent');
+
+
 
   if (!logoCard || !logoTrigger || !logoContent) return;
 
+
+
   logoTrigger.addEventListener('click', function () {
+
     const isOpen = logoCard.classList.toggle('open');
+
     logoTrigger.setAttribute('aria-expanded', String(isOpen));
+
   });
+
 })();
+
 </script>
+
 <!-- PHOTO LIGHTBOX -->
 
+
+
 <div
+
   class="photo-lightbox"
+
   id="photoLightbox"
+
   aria-hidden="true"
+
 >
 
+
+
   <button
+
     class="photo-lightbox-close"
+
     id="photoLightboxClose"
+
     type="button"
+
     aria-label="Close image"
+
   >
+
     ×
+
   </button>
 
+
+
   <img
+
     id="photoLightboxImage"
+
     src=""
+
     alt=""
+
   >
+
+
 
 </div>
 
+
+
 </body>
+
 </html>
