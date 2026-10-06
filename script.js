@@ -4167,31 +4167,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const source =
+  document.createElement(
+    "source"
+  );
 
-          document.createElement(
+source.src =
+  video.src;
 
-            "source"
+source.type =
+  "video/mp4";
 
-          );
+videoElement.appendChild(
+  source
+);
 
-
-
-
-
-        source.src =
-
-          video.src;
-
-
-
-
-
-        videoElement.appendChild(
-
-          source
-
-        );
-
+videoElement.load();
 
 
 
